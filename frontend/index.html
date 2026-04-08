@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IoT Digital Twin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen">
+    <div class="max-w-6xl mx-auto px-6 py-8">
+        <header class="mb-8">
+            <p class="text-sm uppercase tracking-[0.2em] text-slate-500">IoT Portfolio Project</p>
+            <h1 class="text-4xl font-bold mt-2">IoT Device Digital Twin Dashboard</h1>
+            <p class="mt-3 text-slate-600 max-w-3xl">
+                A lightweight web dashboard that simulates an IoT device and presents its live digital twin state
+                through a Flask backend and a clean browser-based interface.
+            </p>
+        </header>
+
+        <section class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+            <div class="card">
+                <p class="card-label">Device ID</p>
+                <h2 id="deviceId" class="card-value text-xl">--</h2>
+            </div>
+            <div class="card">
+                <p class="card-label">Temperature</p>
+                <h2 id="temperature" class="card-value">-- °C</h2>
+            </div>
+            <div class="card">
+                <p class="card-label">Humidity</p>
+                <h2 id="humidity" class="card-value">-- %</h2>
+            </div>
+            <div class="card">
+                <p class="card-label">Status</p>
+                <div class="flex items-center gap-3 mt-2">
+                    <span id="statusDot" class="status-dot"></span>
+                    <h2 id="status" class="card-value text-2xl">--</h2>
+                </div>
+            </div>
+        </section>
+
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div class="lg:col-span-2 card p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <div>
+                        <h3 class="text-xl font-semibold">Telemetry Trend</h3>
+                        <p class="text-slate-500 text-sm">Recent temperature and humidity samples</p>
+                    </div>
+                </div>
+                <canvas id="telemetryChart" height="110"></canvas>
+            </div>
+
+            <div class="card p-6">
+                <h3 class="text-xl font-semibold mb-4">Twin Snapshot</h3>
+                <div class="space-y-4 text-sm">
+                    <div class="snapshot-row">
+                        <span class="snapshot-label">Device Name</span>
+                        <span id="deviceName" class="snapshot-value">--</span>
+                    </div>
+                    <div class="snapshot-row">
+                        <span class="snapshot-label">Vibration</span>
+                        <span id="vibration" class="snapshot-value">--</span>
+                    </div>
+                    <div class="snapshot-row">
+                        <span class="snapshot-label">Last Updated</span>
+                        <span id="lastUpdated" class="snapshot-value">--</span>
+                    </div>
+                </div>
+
+                <div id="alertBox" class="mt-6 hidden rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3">
+                    <p class="font-semibold text-amber-800">Alert</p>
+                    <p class="text-sm text-amber-700 mt-1">
+                        Temperature is above the normal operating range.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
